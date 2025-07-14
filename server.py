@@ -19,7 +19,7 @@ def get_player_career_stats(player_id: str) -> dict:
     """
     try:
       stats = playercareerstats.PlayerCareerStats(player_id=player_id)
-      return stats.get_json()
+      return stats.get_dict()
     except Exception as e:
       return {"error": str(e)}
 
@@ -34,7 +34,7 @@ def get_player_awards(player_id: str) -> dict:
     """
     try:
       awards = playerawards.PlayerAwards(player_id=player_id)
-      return awards.get_json()
+      return awards.get_dict()
     except Exception as e:
       return {"error": str(e)}
 
@@ -56,7 +56,7 @@ def get_player_game_log(player_id: str, season: str, season_type: str) -> dict:
       log = playergamelog.PlayerGameLog(player_id=player_id, 
                                         season=season, 
                                         season_type_all_star=season_type)
-      return log.get_json()
+      return log.get_dict()
    except Exception as e:
       return {"error": str(e)}
 
@@ -74,7 +74,7 @@ def get_team_details(team_id: str) -> dict:
     """
     try:
         details = teamdetails.TeamDetails(team_id=team_id)
-        return details.get_json()
+        return details.get_dict()
     except Exception as e:
         return {"error": str(e)}
 
@@ -89,7 +89,7 @@ def get_team_year_by_year_stats(team_id: str) -> dict:
     """
     try:
         stats = teamyearbyyearstats.TeamYearByYearStats(team_id=team_id)
-        return stats.get_json()
+        return stats.get_dict()
     except Exception as e:
         return {"error": str(e)}
     
@@ -110,7 +110,7 @@ def get_team_game_log(team_id: str, season: str, season_type: str) -> dict:
         log = teamgamelog.TeamGameLog(team_id=team_id, 
                                       season=season, 
                                       season_type_all_star=season_type)
-        return log.get_json()
+        return log.get_dict()
     except Exception as e:
         return {"error": str(e)}
 
@@ -129,7 +129,7 @@ def get_league_team_standings(season: str, season_type: str) -> dict:
         standings = leaguestandingsv3.LeagueStandingsV3(league_id="00",
                                                         season=season, 
                                                         season_type=season_type)
-        return standings.get_json()
+        return standings.get_dict()
     except Exception as e:
         return {"error": str(e)}
 

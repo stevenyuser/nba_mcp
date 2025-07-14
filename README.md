@@ -3,6 +3,10 @@
 A simple MCP (Model Context Protocol) server for getting NBA data through [nba_api](https://github.com/swar/nba_api). 
 This server allows LLMs to retrieve player stats, team stats, game logs, team standings, and more.
 
+## Demo
+
+![NBA MCP Demo](assets/nba_mcp_demo.gif)
+
 ## Tools
 
 ### Player Tools

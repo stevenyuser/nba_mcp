@@ -4,8 +4,7 @@ A simple MCP (Model Context Protocol) server for getting NBA data through [nba_a
 This server allows LLMs to retrieve player stats, team stats, game logs, team standings, and more.
 
 ## Demo
-
-![NBA MCP Demo](assets/nba_mcp_demo.gif)
+https://github.com/user-attachments/assets/ce448f94-0226-4303-95e2-19f125a83a02
 
 ## Tools
 

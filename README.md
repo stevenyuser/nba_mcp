@@ -48,8 +48,9 @@ Returns a list of currently active NBA players.
 Returns a list of all NBA teams.
 
 ## Usage
-To use this MCP server via Claude for Desktop, add the following to your Claude Desktop config file.
+To use this MCP server with Claude for Desktop, add either of the following to your Claude Desktop config file.
 
+Via uv:
 ```
 {
   "mcpServers": {
@@ -60,6 +61,23 @@ To use this MCP server via Claude for Desktop, add the following to your Claude 
         "/ABSOLUTE/PATH/TO/PARENT/FOLDER/nba_mcp",
         "run",
         "server.py"
+      ]
+    }
+  }
+}
+```
+
+Via Docker:
+```
+{
+  "mcpServers": {
+    "nba_mcp": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "stevenyuser/nba-mcp"
       ]
     }
   }

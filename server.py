@@ -1,6 +1,7 @@
 from fastmcp import FastMCP
 from nba_api.stats.static import players, teams
 from nba_api.stats.endpoints import playercareerstats, playerawards, playergamelog, teamyearbyyearstats, teamdetails, teamgamelog, leaguestandingsv3
+from nba_api.live.nba.endpoints import scoreboard, boxscore, playbyplay
 
 mcp = FastMCP("NBA MCP Server")
 
@@ -132,6 +133,60 @@ def get_league_team_standings(season: str, season_type: str) -> dict:
         return standings.get_dict()
     except Exception as e:
         return {"error": str(e)}
+    
+# Live Game Tools
+
+@mcp.tool
+def get_today_scoreboard() -> dict:
+    """
+    Get the current NBA scoreboard for today's games. The NBA scoreboard provides 
+    live data for games, including scores, game statuses, and team information.
+    """
+    try:
+        board = scoreboard.ScoreBoard()
+        print(board.games)
+        if not board.games or not board.games.get_dict():
+           raise ValueError("No games found for today.")
+        return board.games.get_dict()
+    except Exception as e:
+        return {"error": str(e)}
+
+@mcp.tool
+def get_live_game_boxscore(game_id: str) -> dict:
+    """
+    Get the box score for a specific game by its ID. The box score includes live 
+    data for the game, such as scores, player stats, timeouts, and more.
+    
+    Args:
+      game_id: str
+        The ID of the game.
+    """
+    try:
+        box = boxscore.BoxScore(game_id)
+        if not box.game or not box.game.get_dict():
+            raise ValueError(f"No box score found for game ID: {game_id}")
+        return box.game.get_dict()
+    except Exception as e:
+        return {"error": str(e)}
+    
+@mcp.tool
+def get_live_game_play_by_play(game_id: str) -> list:
+    """
+    Get the play-by-play data for a specific game by its ID. The play-by-play data 
+    includes detailed information about each play in the game.
+    
+    Args:
+      game_id: str
+        The ID of the game.
+    """
+    try:
+        pbp = playbyplay.PlayByPlay(game_id)
+        plays = pbp.get_dict()['game']['actions'] # plays = actions
+        if not plays:
+            raise ValueError(f"No play-by-play data found for game ID: {game_id}")
+        return plays
+    except Exception as e:
+        return [{"error": str(e)}]
 
 # Resources
 

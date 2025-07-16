@@ -1,7 +1,7 @@
 # NBA MCP Server
 
 A simple MCP (Model Context Protocol) server for getting NBA data through [nba_api](https://github.com/swar/nba_api). 
-This server allows LLMs to retrieve player stats, team stats, game logs, team standings, and more.
+This server allows LLMs to retrieve live game data, player stats, team stats, game logs, team standings, and more.
 
 ## Demo
 https://github.com/user-attachments/assets/ce448f94-0226-4303-95e2-19f125a83a02
@@ -11,7 +11,7 @@ https://github.com/user-attachments/assets/ce448f94-0226-4303-95e2-19f125a83a02
 ### Player Tools
 `get_player_career_stats(player_id: str)`
 
-Get comprehensive career statistics for a player.
+Gets comprehensive career statistics for a player.
 
 `get_player_awards(player_id: str)`
 
@@ -36,6 +36,16 @@ Team game-by-game statistics and results.
 `get_league_team_standings(season: str, season_type: str)`
 
 Standings for all teams in the league by season.
+
+## Live Game Tools
+`get_today_scoreboard()`
+Retrieves today's NBA games, including live scores, game statuses, and teaminformation.
+
+`get_live_game_boxscore(game_id: str)`
+Gets live game data, including scores, player stats, timeouts, and more.
+
+`get_live_game_play_by_play(game_id: str)`
+Gets live play-by-play data from a game.
 
 ## Resources
 `nba://players`
